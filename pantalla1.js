@@ -1,7 +1,8 @@
+let resultado = document.getElementById("resultado");
+let usuario = document.getElementById("fusuario");
+let resultadoEmail = document.getElementById("resultadoEmail");
 
 document.addEventListener("DOMContentLoaded", () => {
-  let resultado = document.getElementById("resultado");
-
   // 1. Ocultar al iniciar
   resultado.style.display = "none";
 
@@ -11,47 +12,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 5000);
 
   // 3. Mostrar con Ctrl + F10
+   event.preventDefault(); //Esto lo que hace es que quitae pr defecto la funcion por defecto en esa tecla
   document.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key === "F10") {
+   
+    if (event.ctrlKey && event.key === "b") {
       resultado.style.display = "block";
     }
   });
+
+  //los addEcventListener lo que hace es "Escuchar" es decir primero ve el tipo de cosa q tiene que hacer un clic un input etcc y luego ejecuta la funcion de dentro 
+  document.addEventListener("click", () => {
+    if (usuario.value.includes("@") ) {
+      resultadoEmail.textContent = "Usuario correcto!";
+    } else {
+     resultadoEmail.textContent = "usuario incorrecto!";
+    }
+  });
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*let resultado = document.getElementById("resultado");//Declaramos variables y le metemos el valor del id 
-
-
-
-resultado.style.display= "none";      //Aqui lo que hago es decirle a resultado que no aparezca con resultado.style.display= none
-
-
-
-setTimeout(()=>{
-resultado.style.display= "block" //ESto es lo mismo que antes, pero simplemente si que se va a mostrar una vez pase 5 segundos.
-
-}),5000;*/
-
-
-
-
