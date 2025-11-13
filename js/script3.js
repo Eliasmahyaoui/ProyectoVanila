@@ -1,13 +1,12 @@
-
-
 //Variables para hacer los addeventlistener
-let introducePregunta= document.getElementById("pregunta");
-let botonVerdadero= document.getElementById("verdadero");
-let botonFalso= document.getElementById("falso");
-let listPreguntas= document.getElementById();
+let introducePregunta = document.getElementById("pregunta");
+let botonVerdadero = document.getElementById("verdadero");
+let botonFalso = document.getElementById("falso");
+let atras = document.getElementById("atras");
+//let listPreguntas = document.getElementById();
 
 //funciones addEventListener
 
-
-
-
+atras.addEventListener("click", () => {
+  window.location.href = "pantalla2.html";
+});
