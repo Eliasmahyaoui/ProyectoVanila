@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
   //los addEcventListener lo que hace es "Escuchar" es decir primero ve el tipo de cosa q tiene que hacer un clic un input etcc y luego ejecuta la funcion de dentro
   document.addEventListener("click", () => {
     if (usuario.value.includes("@")) {
-      correo = localStorage.setItem("correo", usuario.value); //Aqui guardo el correo que se introduce en el input
+      let fecha = new Date();
+      localStorage.setItem('fechaGuardada', fecha);
+      localStorage.setItem("correo", usuario.value); //Aqui guardo el correo que se introduce en el input
+     
       
       resultadoEmail.textContent = "Usuario correcto!";
       window.location.href = "pantalla2.html";

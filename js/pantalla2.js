@@ -1,13 +1,14 @@
 //Estas variables seran para la pantalla 2
 let mostrarCorreo = document.getElementById("correoMostrado");
-let verificaFecha
+let verificaFecha = document.getElementById("verificacion");
 
+document.addEventListener("DOMContentLoaded", () => {
+  const correo = localStorage.getItem("correo");
+  const mostrarFecha = localStorage.getItem("fechaGuardada");
 
-document.addEventListener('DOMContentLoaded',()=>{
+  const p = document.getElementById("correoMostrado");
+  const fecha = document.getElementById("verificacion");
 
-  const correo= localStorage.getItem('correo');
-  const p= document.getElementById("correoMostrado")
-
-  p.textContent= 'Correo guardado: ' + correo
-
+  p.textContent = "Correo guardado: " + correo;
+  fecha.textContent = "La ulitma vez que entraste fue el " + mostrarFecha;
 });
