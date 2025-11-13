@@ -11,9 +11,22 @@
     <div id="formulario">
       <form action="form">
         <label for="pregunta" id="pregunta">Pregunta</label>
-        <input type="text" name="" id="textoPregunta" /><br />
-        <input type="radio" name="" id="verdadero" />
+        <input type="text" name="" id="textoPregunta"/>
+          <br>
+          <br>
+        <label for="verdadero">verdadero</label>
+        <input type="radio" name="respuesta" id="verdadero">
+        
+        <label for="falso">falso</label>
+        <input type="radio" name="respuesta" id="falso">
+        <br>
+        <br>
+        <label for="puntuacion">Puntuacion:</label><br>
+        <input type="button" id="atras" value="Atras">
+        <input type="button" id="grabar" value="grabar">
       </form>
     </div>
+
+    <script src="js/script3.js" defer></script>
   </body>
 </html>
