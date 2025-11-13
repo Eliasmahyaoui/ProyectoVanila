@@ -1,6 +1,5 @@
 //Estas variables seran para la pantalla 2
-let mostrarCorreo = document.getElementById("correoMostrado");
-let verificaFecha = document.getElementById("verificacion");
+
 let boton = document.getElementById("botonPreguntas");
 
 
