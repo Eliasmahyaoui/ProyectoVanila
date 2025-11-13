@@ -2,8 +2,10 @@ let resultado = document.getElementById("resultado");
 let usuario = document.getElementById("fusuario");
 let resultadoEmail = document.getElementById("resultadoEmail");
 
+
+//Este evento es para todo el documento 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Ocultar al iniciar
+
   resultado.style.display = "none";
 
   // 2. Mostrar después de 5 segundos
