@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/estilo.css" />
-  </head>
-  <body>
-    <!--Creamos el formulario-->
-    <div id="formulario">
-      <label for="pregunta" id="pregunta">Pregunta</label>
-      <input type="text" name="" id="textoPregunta" />
-      <br />
-      <br />
-      <label for="verdadero">verdadero</label>
-      <input type="radio" name="respuesta" id="verdadero" />
 
-      <label for="falso">falso</label>
-      <input type="radio" name="respuesta" id="falso" />
-      <br />
-      <br />
-      <label for="puntuacion">Puntuacion:</label>
-      <input type="number" name="puntuacion" id="puntuacion">
-      <p id="verificacionPuntuacion"></p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="css/estilo.css" />
+</head>
+
+<body>
+  <!--Creamos el formulario-->
+  <div id="formulario">
+    <label for="pregunta" id="pregunta">Pregunta</label>
+    <input type="text" name="" id="textoPregunta" />
+    <br />
+    <br />
+    <label for="verdadero">verdadero</label>
+    <input type="radio" name="respuesta" id="verdadero" />
+
+    <label for="falso">falso</label>
+    <input type="radio" name="respuesta" id="falso" />
+    <br />
+    <br />
+    <label for="puntuacion">Puntuacion:</label>
+    <input type="number" name="puntuacion" id="puntuacion">
+    <p id="verificacionPuntuacion"></p>
+    <br>
+    <br>
+
+    <button id="atras">Atras</button>
+    <button id="grabar">grabar</button>
+
+    <table id="tablaPreguntas" border="1">
       <br>
       <br>
+      <tr>
+        <th>Pregunta</th>
+        <th>Respuesta</th>
+        <th>Puntuación</th>
+        <th>Estado</th>
+      </tr>
+    </table>
 
-      <button id="atras">Atras</button>
-      <button id="grabar">grabar</button>
-    </div>
 
-    <script src="js/script3.js" defer></script>
-  </body>
+  </div>
+
+
+
+
+  <script src="js/script3.js" defer></script>
+</body>
+
 </html>
