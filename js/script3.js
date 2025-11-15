@@ -67,17 +67,22 @@ botonGrabar.addEventListener("click", () => {
   }
 
   // Guardar valores de varibales antes de setTimeout
-  let preguntaVal = introducePregunta.value;
-  let respuestaVal = respuestaSeleccionada;
-  let puntuacionVal = puntuacion.value;
-  let estadoVal = "Guardando...";
+  let preguntaValor = introducePregunta.value;
+  let respuestaValor = respuestaSeleccionada;
+  let puntuacionValor = puntuacion.value;
+  let estadoValor = "Guardando...";
   
   // Guardar en localStorage
-  localStorage.setItem("preguntaGuardada", preguntaVal);
-  localStorage.setItem("respuesta", respuestaVal);
-  localStorage.setItem("puntuacion", puntuacionVal);
+  localStorage.setItem("preguntaGuardada", preguntaValor);
+  localStorage.setItem("respuesta", respuestaValor);
+  localStorage.setItem("puntuacion", puntuacionValor);
 
   rFinal.textContent = 'Pregunta guardada correctamente';
+
+  //Guardamos en la cookies
+  document.cookie= "preguntaGuardada=" + preguntaValor;
+  document.cookie= "respuesta=" + respuestaValor;
+  document.cookie= "puntuacion=" + puntuacionValor;
 
 
   tabla.style.display = "table";
@@ -87,24 +92,24 @@ botonGrabar.addEventListener("click", () => {
     let fila = document.createElement("tr");
 
     let tdPregunta = document.createElement("td");
-    tdPregunta.textContent = preguntaVal;
+    tdPregunta.textContent = preguntaValor;
     fila.appendChild(tdPregunta);
 
     let tdRespuesta = document.createElement("td");
-    tdRespuesta.textContent = respuestaVal;
+    tdRespuesta.textContent = respuestaValor;
     fila.appendChild(tdRespuesta);
 
     let tdPuntuacion = document.createElement("td");
-    tdPuntuacion.textContent = puntuacionVal;
+    tdPuntuacion.textContent = puntuacionValor;
     fila.appendChild(tdPuntuacion);
 
     let tdEstado = document.createElement("td");
-    tdEstado.textContent = estadoVal;
+    tdEstado.textContent = estadoValor;
     fila.appendChild(tdEstado);
 
     tabla.appendChild(fila);
 
-    // cambiamos el estado despues de 5 segundos
+
     setTimeout(() => {
       tdEstado.textContent = "OK  ";
       puedeSalir = true; //Aqui ya si que sales cuando el estado esta en OK 

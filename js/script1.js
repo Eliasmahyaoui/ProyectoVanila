@@ -1,7 +1,7 @@
 let resultado = document.getElementById("resultado");
 let usuario = document.getElementById("fusuario");
 let resultadoEmail = document.getElementById("resultadoEmail");
-
+let botonGuardar= document.getElementById("btnGuardar");
 
 //Este evento es para todo el documento 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //los addEcventListener lo que hace es "Escuchar" es decir primero ve el tipo de cosa q tiene que hacer un clic un input etcc y luego ejecuta la funcion de dentro
-  document.addEventListener("click", () => {
+  botonGuardar.addEventListener("click", () => {
     if (usuario.value.includes("@")) {
       let fecha = new Date();
       localStorage.setItem('fechaGuardada', fecha);

@@ -1,14 +1,9 @@
-div {
-  font-size: 20px;
-  input {
-    height: 30px;
-    font-size: large;
-  }
-}
+
 
 table{
   justify-content: center;
   text-align: center;
+  display: flex;
   
   th{
     justify-content: center;
