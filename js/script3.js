@@ -1,99 +1,115 @@
-
 //Variables
 let introducePregunta = document.getElementById("textoPregunta");
 let botonVerdadero = document.getElementById("verdadero");
 let botonFalso = document.getElementById("falso");
 let atras = document.getElementById("atras");
 let puntuacion = document.getElementById("puntuacion");
-let pPregunta= document.getElementById("verificacionPregunta");
-let pVerdaderoFalso= document.getElementById("verificacionVerdaderoFalso");
+let pPregunta = document.getElementById("verificacionPregunta");
+let pVerdaderoFalso = document.getElementById("verificacionVerdaderoFalso");
 let pPuntuacion = document.getElementById("verificacionPuntuacion");
-let rFinal= document.getElementById("resultadoFinal");
+let rFinal = document.getElementById("resultadoFinal");
 let botonGrabar = document.getElementById("grabar");
-let tabla= document.getElementById("tablaPreguntas");
+let tabla = document.getElementById("tablaPreguntas");
 let respuestaSeleccionada = null;
 
-
-tabla.style.display="none";
-
+tabla.style.display = "none";
+let puedeSalir = true;
 
 // evento de verdadero
 botonVerdadero.addEventListener("click", () => {
-  respuestaSeleccionada= 'verdadero';
+  respuestaSeleccionada = 'verdadero';
 });
 
 // evento de falso
 botonFalso.addEventListener("click", () => {
-  respuestaSeleccionada= 'falso';
+  respuestaSeleccionada = 'falso';
 });
 
 // evento boton atrás
 atras.addEventListener("click", () => {
-  window.location.href = "pantalla2.html";
+
+  if (!puedeSalir) {
+    atras.textContent = "No puedes salir todavia.."
+    return;
+  } else {
+    window.location.href = "pantalla2.html";
+  }
+
+
 });
 
 // evento grabar
 botonGrabar.addEventListener("click", () => {
 
-  // VALIDACIONES (ya las tienes)
-  if (introducePregunta.value === "") {
-    pPregunta.textContent= 'La pregunta no puede estar vacía';
-    return;
-  } else { pPregunta.style.display = "none"; }
+  //  Aqui tambien esta en false porque realemnete tampoco podrias salir
+  //mientras se carga el estado hasta que no deje de poner "guardando" por ejmplo.
+  puedeSalir = false;
 
-  if (respuestaSeleccionada===null) {
-    pVerdaderoFalso.textContent= 'Debes seleccionar Verdadero o Falso';
+  if (introducePregunta.value === "") {
+    pPregunta.textContent = 'La pregunta no puede estar vacía';
     return;
-  } else { pVerdaderoFalso.style.display= "none"; }
+  } else {
+    pPregunta.style.display = "none";
+  }
+
+  if (respuestaSeleccionada === null) {
+    pVerdaderoFalso.textContent = 'Debes seleccionar Verdadero o Falso';
+    return;
+  } else {
+    pVerdaderoFalso.style.display = "none";
+  }
 
   if (puntuacion.value === "" || puntuacion.value < 0 || puntuacion.value > 9) {
-    pPuntuacion.textContent= 'La puntuación debe ser un número entre 0 y 9';
+    pPuntuacion.textContent = 'La puntuación debe ser un número entre 0 y 9';
     return;
-  } else { pPuntuacion.style.display= "none"; }
+  } else {
+    pPuntuacion.style.display = "none";
+  }
 
-  // GUARDAR VALORES EN VARIABLES ANTES DE setTimeout
+  // Guardar valores de varibales antes de setTimeout
   let preguntaVal = introducePregunta.value;
   let respuestaVal = respuestaSeleccionada;
   let puntuacionVal = puntuacion.value;
   let estadoVal = "Guardando...";
-1
-  // Guardar en localStorage si quieres
+  
+  // Guardar en localStorage
   localStorage.setItem("preguntaGuardada", preguntaVal);
   localStorage.setItem("respuesta", respuestaVal);
   localStorage.setItem("puntuacion", puntuacionVal);
 
   rFinal.textContent = 'Pregunta guardada correctamente';
 
-  // MOSTRAR LA TABLA
+
   tabla.style.display = "table";
 
-  // CREAR FILA Y AÑADIR DATOS
+  // dentro de setTimeOut creamos fila y todo lo que tiene que ver con la tabla
   setTimeout(() => {
-      let fila = document.createElement("tr");
+    let fila = document.createElement("tr");
 
-      let tdPregunta = document.createElement("td");
-      tdPregunta.textContent = preguntaVal;
-      fila.appendChild(tdPregunta);
+    let tdPregunta = document.createElement("td");
+    tdPregunta.textContent = preguntaVal;
+    fila.appendChild(tdPregunta);
 
-      let tdRespuesta = document.createElement("td");
-      tdRespuesta.textContent = respuestaVal;
-      fila.appendChild(tdRespuesta);
+    let tdRespuesta = document.createElement("td");
+    tdRespuesta.textContent = respuestaVal;
+    fila.appendChild(tdRespuesta);
 
-      let tdPuntuacion = document.createElement("td");
-      tdPuntuacion.textContent = puntuacionVal;
-      fila.appendChild(tdPuntuacion);
+    let tdPuntuacion = document.createElement("td");
+    tdPuntuacion.textContent = puntuacionVal;
+    fila.appendChild(tdPuntuacion);
 
-      let tdEstado = document.createElement("td");
-      tdEstado.textContent = estadoVal;
-      fila.appendChild(tdEstado);
+    let tdEstado = document.createElement("td");
+    tdEstado.textContent = estadoVal;
+    fila.appendChild(tdEstado);
 
-      tabla.appendChild(fila);
+    tabla.appendChild(fila);
 
-      // cambiamos el estado despues de 3 segundos
-      setTimeout(() => {
-          tdEstado.textContent = "OK  ";
-      }, 5000);
+    // cambiamos el estado despues de 5 segundos
+    setTimeout(() => {
+      tdEstado.textContent = "OK  ";
+      puedeSalir = true; //Aqui ya si que sales cuando el estado esta en OK 
+    }, 5000);
 
-  }, 5000); // medio segundo para simular retraso
+  });
+
 });
-
