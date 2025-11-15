@@ -5,3 +5,18 @@ div {
     font-size: large;
   }
 }
+
+table{
+  justify-content: center;
+  text-align: center;
+  
+  th{
+    justify-content: center;
+    text-align: right;
+    color: rgb(185, 66, 66);
+    flex: 50px;
+    gap: 0;
+    font-size: 25px;
+  }
+
+}

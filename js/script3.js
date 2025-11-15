@@ -1,68 +1,99 @@
+
 //Variables
 let introducePregunta = document.getElementById("textoPregunta");
 let botonVerdadero = document.getElementById("verdadero");
 let botonFalso = document.getElementById("falso");
 let atras = document.getElementById("atras");
 let puntuacion = document.getElementById("puntuacion");
-let p = document.getElementById("verificacionPuntuacion");
+let pPregunta= document.getElementById("verificacionPregunta");
+let pVerdaderoFalso= document.getElementById("verificacionVerdaderoFalso");
+let pPuntuacion = document.getElementById("verificacionPuntuacion");
+let rFinal= document.getElementById("resultadoFinal");
 let botonGrabar = document.getElementById("grabar");
-
-// Variable para saber si el usuario seleccionó verdadero o falso
+let tabla= document.getElementById("tablaPreguntas");
 let respuestaSeleccionada = null;
 
-// Selección de verdadero
+
+tabla.style.display="none";
+
+
+// evento de verdadero
 botonVerdadero.addEventListener("click", () => {
-  respuestaSeleccionada = "verdadero";
+  respuestaSeleccionada= 'verdadero';
 });
 
-// Selección de falso
+// evento de falso
 botonFalso.addEventListener("click", () => {
-  respuestaSeleccionada = "falso";
+  respuestaSeleccionada= 'falso';
 });
 
-// Validación de puntuación
-puntuacion.addEventListener("blur", () => {
-  if (puntuacion.value < 0 || puntuacion.value > 9) {
-    p.textContent = "Deben ser números del 0 al 9";
-  } else {
-    p.textContent = "Puntuación correcta";
-  }
-});
-
-// Botón atrás
+// evento boton atrás
 atras.addEventListener("click", () => {
   window.location.href = "pantalla2.html";
 });
 
-// Evento grabar
+// evento grabar
 botonGrabar.addEventListener("click", () => {
 
-  // 1️⃣ Recoger los valores
-  let textoPregunta = introducePregunta.value.trim();
-  let puntos = puntuacion.value;
-
-  // 2️⃣ Validaciones
-  if (textoPregunta === "") {
-    alert("La pregunta no puede estar vacía");
-    return; 
-  }
-
-  if (respuestaSeleccionada === null) {
-    alert("Debes seleccionar Verdadero o Falso");
+  // VALIDACIONES (ya las tienes)
+  if (introducePregunta.value === "") {
+    pPregunta.textContent= 'La pregunta no puede estar vacía';
     return;
-  }
+  } else { pPregunta.style.display = "none"; }
 
-  if (puntos === "" || puntos < 0 || puntos > 9) {
-    alert("La puntuación debe ser un número entre 0 y 9");
+  if (respuestaSeleccionada===null) {
+    pVerdaderoFalso.textContent= 'Debes seleccionar Verdadero o Falso';
     return;
-  }
+  } else { pVerdaderoFalso.style.display= "none"; }
 
-  // 3️⃣ Si todo está bien → Guardar en localStorage
-  localStorage.setItem("preguntaGuardada", textoPregunta);
-  localStorage.setItem("respuesta", respuestaSeleccionada);
-  localStorage.setItem("puntuacion", puntos);
+  if (puntuacion.value === "" || puntuacion.value < 0 || puntuacion.value > 9) {
+    pPuntuacion.textContent= 'La puntuación debe ser un número entre 0 y 9';
+    return;
+  } else { pPuntuacion.style.display= "none"; }
 
-  alert("Pregunta guardada correctamente");
+  // GUARDAR VALORES EN VARIABLES ANTES DE setTimeout
+  let preguntaVal = introducePregunta.value;
+  let respuestaVal = respuestaSeleccionada;
+  let puntuacionVal = puntuacion.value;
+  let estadoVal = "Guardando...";
+1
+  // Guardar en localStorage si quieres
+  localStorage.setItem("preguntaGuardada", preguntaVal);
+  localStorage.setItem("respuesta", respuestaVal);
+  localStorage.setItem("puntuacion", puntuacionVal);
+
+  rFinal.textContent = 'Pregunta guardada correctamente';
+
+  // MOSTRAR LA TABLA
+  tabla.style.display = "table";
+
+  // CREAR FILA Y AÑADIR DATOS
+  setTimeout(() => {
+      let fila = document.createElement("tr");
+
+      let tdPregunta = document.createElement("td");
+      tdPregunta.textContent = preguntaVal;
+      fila.appendChild(tdPregunta);
+
+      let tdRespuesta = document.createElement("td");
+      tdRespuesta.textContent = respuestaVal;
+      fila.appendChild(tdRespuesta);
+
+      let tdPuntuacion = document.createElement("td");
+      tdPuntuacion.textContent = puntuacionVal;
+      fila.appendChild(tdPuntuacion);
+
+      let tdEstado = document.createElement("td");
+      tdEstado.textContent = estadoVal;
+      fila.appendChild(tdEstado);
+
+      tabla.appendChild(fila);
+
+      // cambiamos el estado despues de 3 segundos
+      setTimeout(() => {
+          tdEstado.textContent = "OK  ";
+      }, 5000);
+
+  }, 5000); // medio segundo para simular retraso
 });
-
 
