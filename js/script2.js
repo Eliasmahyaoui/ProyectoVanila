@@ -2,9 +2,6 @@
 
 let boton = document.getElementById("botonPreguntas");
 
-
-
-document.addEventListener("DOMContentLoaded", () => {
 const correo = localStorage.getItem("correo");
 const mostrarFecha = localStorage.getItem("fechaGuardada");
 
@@ -14,7 +11,7 @@ const fecha = document.getElementById("verificacion");
 p.textContent = "Correo guardado: " + correo;
 fecha.textContent = "La ulitma vez que entraste fue el " + mostrarFecha;
 
-});
+
 
 boton.addEventListener("click", () => {
   window.location.href = "pantalla3.html";
